@@ -47,7 +47,11 @@ router.post("/book/create", (req, res) => {
 });
 
 router.delete("/book/:id", (req, res) => {
-  queries.removeBook(req.params.id).then(() => res.json("deleted"));
+  queries.removeBook(req.params.id).then(() => res.send("deleted"));
+});
+
+router.put("/book/:id", (req, res) => {
+  queries.updateBook(req.body, req.params.id).then(() => res.send("Updated"));
 });
 
 module.exports = router;

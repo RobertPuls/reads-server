@@ -10,6 +10,9 @@ module.exports = {
     return knex("book").insert(bookItem).returning("*");
   },
   removeBook: book_id => {
-    return knex("book").where("book.id", book_id).del();
+    return knex("book").where("id", book_id).del();
+  },
+  updateBook: (newBook, id) => {
+    return knex("book").where("id", id).update(newBook);
   }
 };
