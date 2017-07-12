@@ -46,7 +46,7 @@ router.post("/book/create", (req, res) => {
   queries.addBook(req.body).then(book => res.json(book));
 });
 
-router.delete("book/:id", (req, res) => {
+router.delete("/book/:id", (req, res) => {
   queries.removeBook(req.params.id).then(() => res.json("deleted"));
 });
 
