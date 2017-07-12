@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const queries = require("./db/queries");
+const queries = require("../db/queries");
 
 function reformatBooks(books) {
   const reformatted = [];
@@ -8,15 +8,15 @@ function reformatBooks(books) {
 
 
   books.forEach(book => {
-    if (booksByID[book.id]) {
-      booksByID[book.id].authors.push({
+    if (booksByID[book.book_id]) {
+      booksByID[book.book_id].authors.push({
         first_name: book.first_name,
         last_name: book.last_name,
         bio: book.bio,
         author_image: book.img_url
       });
     } else {
-      booksByID[book.id] = {
+      booksByID[book.book_id] = {
         book_name: book.title,
         book_genre: book.genre,
         book_desc: book.desc,
@@ -28,12 +28,17 @@ function reformatBooks(books) {
           author_image: book.img_url
         }]
       };
-      reformatted.push(booksByID[book.id])
+      reformatted.push(booksByID[book.book_id]);
     }
   });
   return reformatted;
 }
 
 router.get("/all", (req, res) => {
-  queries.getAll().then(books => res.json(books));
+  queries.getAll().then(books => {
+    const reformatted = reformatBooks(books);
+    res.json(reformatted);
+  });
 });
+
+module.exports = router;
