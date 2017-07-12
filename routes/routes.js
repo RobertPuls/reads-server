@@ -17,6 +17,7 @@ function reformatBooks(books) {
       });
     } else {
       booksByID[book.book_id] = {
+        book_id: book.book_id,
         book_name: book.title,
         book_genre: book.genre,
         book_desc: book.desc,
