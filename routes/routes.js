@@ -47,7 +47,7 @@ router.post("/book/create", (req, res) => {
 });
 
 router.delete("book/:id", (req, res) => {
-  queries.removeBook(req.params.id).then(() => res.json("deleted"))
+  queries.removeBook(req.params.id).then(() => res.json("deleted"));
 });
 
 module.exports = router;
