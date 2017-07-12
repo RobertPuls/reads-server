@@ -5,5 +5,8 @@ module.exports = {
     return knex("book_author").innerJoin("book", "book_author.book_id", "book.id")
       .innerJoin("author", "book_author.author_id", "author.id")
       .returning("*");
+  },
+  addBook: bookItem => {
+    return knex("book").insert(bookItem).returning("*");
   }
 };
