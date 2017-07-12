@@ -34,11 +34,15 @@ function reformatBooks(books) {
   return reformatted;
 }
 
-router.get("/all", (req, res) => {
+router.get("/book/all", (req, res) => {
   queries.getAll().then(books => {
     const reformatted = reformatBooks(books);
     res.json(reformatted);
   });
+});
+
+router.post("/book/create", (req, res) => {
+  queries.addBook(req.body).then(book => res.json(book));
 });
 
 module.exports = router;
