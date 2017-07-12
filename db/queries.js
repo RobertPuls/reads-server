@@ -8,5 +8,8 @@ module.exports = {
   },
   addBook: bookItem => {
     return knex("book").insert(bookItem).returning("*");
+  },
+  removeBook: book_id => {
+    return knex("book").where("id", book_id).del();
   }
 };
