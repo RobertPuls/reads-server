@@ -45,7 +45,7 @@ router.get("/book/all", (req, res) => {
 router.get("/book/:id", (req, res) => {
   queries.getBook(req.params.id).then(book => {
     const reformatted = reformatBooks(book);
-    res.json(reformatted, book);
+    res.json(reformatted);
   });
 });
 
