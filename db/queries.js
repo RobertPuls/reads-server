@@ -9,7 +9,7 @@ module.exports = {
   getBook: book_id => {
     return knex("book_author").innerJoin("book", "book_author.book_id", "book.id")
       .innerJoin("author", "book_author.author_id", "author.id")
-      .where("book_id", book_id).returning("*");
+      .where("book_id", book_id).returning("*").first();
   },
   addBook: bookItem => {
     return knex("book").insert(bookItem).returning("*");
