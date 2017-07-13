@@ -42,6 +42,13 @@ router.get("/book/all", (req, res) => {
   });
 });
 
+router.get("/book/:id", (req, res) => {
+  queries.getBook(req.params.id).then(book => {
+    const reformatted = reformatBooks(book);
+    res.json(reformatted, book);
+  });
+});
+
 router.post("/book/create", (req, res) => {
   queries.addBook(req.body).then(book => res.json(book));
 });
